@@ -1,13 +1,14 @@
-import React from 'react'
+/** @format */
+
+import React from 'react';
+import Navbar from './components/Navbar';
 
 const App = () => {
   return (
     <div>
-      <h1>Welcome to the Car Rental App</h1>
-      <p>Your one-stop solution for renting cars effortlessly.</p>
+      <Navbar />
     </div>
-  )
-}
+  );
+};
 
-export default App
-
+export default App;
