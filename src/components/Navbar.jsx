@@ -2,12 +2,13 @@
 
 import React, { useState } from 'react';
 import { assets, menuLinks } from '../assets/assets';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
-const Navbar = () => {
+const Navbar = ({setShowLogin}) => {
   const Location = useLocation();
 
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <div
@@ -16,7 +17,7 @@ const Navbar = () => {
       }`}
     >
       <Link to='/'>
-        <img src={assets.logo} alt='Logo' className='h-8' />
+        <img src={assets.logo} alt='Logo' className='h-12' />
       </Link>
 
       <div
@@ -38,7 +39,17 @@ const Navbar = () => {
           />
           <img src={assets.search_icon} alt='search icon' />
         </div>
+        <div className='flex max-sm:flex-col items-start sm:items-center gap-6'>
+          <button onClick={() => navigate('/owner')} className='cursor-pointer'>
+            Dashboard
+          </button>
+          <button onClick={() => setShowLogin(true)} className='cursor-pointer px-8 py-2 bg-blue-500 hover:bg-blue-700 transition-all text-white rounded-lg'>Login</button>
+        </div>
       </div>
+
+      <button className='sm:hidden cursor-pointer' aria-label='Menu' onClick={() => setOpen(!open)}>
+        <img src={open ? assets.close_icon : assets.menu_icon} alt="menu" />
+      </button>
     </div>
   );
 };
